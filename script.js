@@ -28,7 +28,7 @@ const books = [
     pages: 320,
     author: {
       name: 'Alice',
-      age: 17,
+      age: 18,
     },
     available: true,
     price: '8€',
@@ -63,29 +63,53 @@ const books = [
 //Snack 2
 
 // Creare un array (availableBooks) che contiene tutti i libri disponibili.
-const availableBooks = books.filter((a) => a.available === true);
+// const availableBooks = books.filter((a) => a.available === true);
 
-console.log(availableBooks);
+// console.log(availableBooks);
 
 // Crea un array (discountedBooks) con gli availableBooks, ciascuno con il prezzo scontato del 20% (mantieni lo stesso formato e arrotonda al centesimo)
 
-function discountbook(book) {
-  const prezzoScontato = parseInt(book.price) * (1 - 20 / 100);
+// function discountbook(book) {
+//   const prezzoScontato = parseInt(book.price) * (1 - 20 / 100);
 
-  return {
-    ...book,
-    price: prezzoScontato.toFixed(2) + '€',
-  };
-}
+//   return {
+//     ...book,
+//     price: prezzoScontato.toFixed(2) + '€',
+//   };
+// }
 
-const discoutendBooks = availableBooks.map(discountbook);
+// const discoutendBooks = availableBooks.map(discountbook);
 
-console.log(discoutendBooks);
+// console.log(discoutendBooks);
 
 // Salva in una variabile (fullPricedBook) il primo elemento di discountedBooks che ha un prezzo intero (senza centesimi).
 
-const fullPricedBook = discoutendBooks.find((p) => {
-  return Number.isInteger(parseFloat(p.price));
-});
+// const fullPricedBook = discoutendBooks.find((p) => {
+//   return Number.isInteger(parseFloat(p.price));
+// });
 
-console.log(fullPricedBook);
+// console.log(fullPricedBook);
+
+//Snack 3
+
+// Creare un array (authors) che contiene gli autori dei libri.
+
+const authors = books.map((a) => a.author);
+
+console.log(authors);
+
+// Crea una variabile booleana (areAuthorsAdults) per verificare se gli autori sono tutti maggiorenni.
+
+const areAuthorsAdults = authors.every((i) => i.age >= 18);
+
+// console.log(areAuthorsAdults);
+
+// Ordina l’array authors in base all’età, senza creare un nuovo array. (se areAuthorsAdult è true, ordina in ordine crescente, altrimenti in ordine decrescente)
+
+authors.sort((a, b) => {
+  if (areAuthorsAdults === true) {
+    return a.age - b.age;
+  } else {
+    return b.age - a.age;
+  }
+});
