@@ -50,12 +50,42 @@ const books = [
 //Snack 1
 
 // Crea un array (longBooks) con i libri che hanno più di 300 pagine;
-const longBooks = books.filter((p) => p.pages > 300);
+// const longBooks = books.filter((p) => p.pages > 300);
 
-console.log(longBooks);
+// console.log(longBooks);
 
 // Creare un array (longBooksTitles) che contiene solo i titoli dei libri contenuti in longBooks.
 
-const longBooksTitles = longBooks.map((t) => t.title);
+// const longBooksTitles = longBooks.map((t) => t.title);
 
-console.log(longBooksTitles);
+// console.log(longBooksTitles);
+
+//Snack 2
+
+// Creare un array (availableBooks) che contiene tutti i libri disponibili.
+const availableBooks = books.filter((a) => a.available === true);
+
+console.log(availableBooks);
+
+// Crea un array (discountedBooks) con gli availableBooks, ciascuno con il prezzo scontato del 20% (mantieni lo stesso formato e arrotonda al centesimo)
+
+function discountbook(book) {
+  const prezzoScontato = parseInt(book.price) * (1 - 20 / 100);
+
+  return {
+    ...book,
+    price: prezzoScontato.toFixed(2) + '€',
+  };
+}
+
+const discoutendBooks = availableBooks.map(discountbook);
+
+console.log(discoutendBooks);
+
+// Salva in una variabile (fullPricedBook) il primo elemento di discountedBooks che ha un prezzo intero (senza centesimi).
+
+const fullPricedBook = discoutendBooks.find((p) => {
+  return Number.isInteger(parseFloat(p.price));
+});
+
+console.log(fullPricedBook);
