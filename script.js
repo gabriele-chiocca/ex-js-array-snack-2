@@ -94,22 +94,38 @@ const books = [
 
 // Creare un array (authors) che contiene gli autori dei libri.
 
-const authors = books.map((a) => a.author);
+// const authors = books.map((a) => a.author);
 
-console.log(authors);
+// console.log(authors);
 
 // Crea una variabile booleana (areAuthorsAdults) per verificare se gli autori sono tutti maggiorenni.
 
-const areAuthorsAdults = authors.every((i) => i.age >= 18);
+// const areAuthorsAdults = authors.every((i) => i.age >= 18);
 
 // console.log(areAuthorsAdults);
 
 // Ordina l’array authors in base all’età, senza creare un nuovo array. (se areAuthorsAdult è true, ordina in ordine crescente, altrimenti in ordine decrescente)
 
-authors.sort((a, b) => {
-  if (areAuthorsAdults === true) {
-    return a.age - b.age;
-  } else {
-    return b.age - a.age;
-  }
-});
+// authors.sort((a, b) => {
+//   if (areAuthorsAdults === true) {
+//     return a.age - b.age;
+//   } else {
+//     return b.age - a.age;
+//   }
+// });
+
+//Snack 4
+
+console.log(books);
+
+// Creare un array (ages) che contiene le età degli autori dei libri.
+
+const ages = books.map((a) => a.author.age);
+
+console.log(ages);
+
+const agesSum = ages.reduce((acc, curr) => {
+  return acc + curr;
+}, 0);
+
+console.log(agesSum / ages.length);
