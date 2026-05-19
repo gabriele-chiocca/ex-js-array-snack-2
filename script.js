@@ -116,16 +116,38 @@ const books = [
 
 //Snack 4
 
-console.log(books);
+// console.log(books);
 
 // Creare un array (ages) che contiene le età degli autori dei libri.
 
-const ages = books.map((a) => a.author.age);
+// const ages = books.map((a) => a.author.age);
 
-console.log(ages);
+// console.log(ages);
 
-const agesSum = ages.reduce((acc, curr) => {
-  return acc + curr;
-}, 0);
+// const agesSum = ages.reduce((acc, curr) => {
+//   return acc + curr;
+// }, 0);
 
-console.log(agesSum / ages.length);
+// console.log(agesSum / ages.length);
+
+// Snack 5 Bonus
+
+async function fetchJson(url) {
+  const response = await fetch(url);
+  const obj = await response.json();
+  return obj;
+}
+
+async function getBooks() {
+  const arrayId = [2, 13, 7, 21, 19];
+
+  const promises = arrayId.map((id) => {
+    return fetchJson(`http://localhost:3333/books/${id}`);
+  });
+
+  return Promise.all(promises);
+}
+
+getBooks()
+  .then((response) => console.log(response))
+  .catch((error) => console.error(error));
