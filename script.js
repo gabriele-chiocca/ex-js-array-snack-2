@@ -158,26 +158,44 @@ const books = [
 
 //Crea una variabile booleana (areThereAvailableBooks) per verificare se c’è almeno un libro disponibile.
 
-const areThereAvailableBooks = books.some((p) => p.available);
+// const areThereAvailableBooks = books.some((p) => p.available);
 
-console.log(areThereAvailableBooks);
+// console.log(areThereAvailableBooks);
 
 //Crea un array (booksByPrice) con gli elementi di books ordinati in base al prezzo (crescente).
 
-const booksByPrice = books
-  .map((book) => book)
-  .sort((a, b) => {
-    const priceA = parseInt(a.price);
-    const priceB = parseInt(b.price);
+// const booksByPrice = books
+//   .map((book) => book)
+//   .sort((a, b) => {
+//     const priceA = parseInt(a.price);
+//     const priceB = parseInt(b.price);
 
-    return priceA - priceB;
+//     return priceA - priceB;
+//   });
+
+// console.log(booksByPrice);
+
+// console.log(books);
+
+//Ordina l’array booksByPricein base alla disponibilità (prima quelli disponibili), senza creare un nuovo array.
+// booksByPrice.sort((a, b) => {
+//   return b.available - a.available;
+// });
+
+//Snack 7 bonus
+
+const tagCounts = books.reduce((acc, curr) => {
+  curr.tags.forEach((tag) => {
+    if (acc[tag]) {
+      acc[tag]++;
+    } else {
+      acc[tag] = 1;
+    }
   });
 
-console.log(booksByPrice);
+  return acc;
+}, {});
 
 console.log(books);
 
-//Ordina l’array booksByPricein base alla disponibilità (prima quelli disponibili), senza creare un nuovo array.
-booksByPrice.sort((a, b) => {
-  return b.available - a.available;
-});
+console.log(tagCounts);
