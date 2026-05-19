@@ -132,22 +132,52 @@ const books = [
 
 // Snack 5 Bonus
 
-async function fetchJson(url) {
-  const response = await fetch(url);
-  const obj = await response.json();
-  return obj;
-}
+// async function fetchJson(url) {
+//   const response = await fetch(url);
+//   const obj = await response.json();
+//   return obj;
+// }
 
-async function getBooks() {
-  const arrayId = [2, 13, 7, 21, 19];
+// async function getBooks() {
+//   const arrayId = [2, 13, 7, 21, 19];
 
-  const promises = arrayId.map((id) => {
-    return fetchJson(`http://localhost:3333/books/${id}`);
+//   const promises = arrayId.map((id) => {
+//     return fetchJson(`http://localhost:3333/books/${id}`);
+//   });
+
+//   const responseTaken = Promise.all(promises);
+
+//   return responseTaken;
+// }
+
+// getBooks()
+//   .then((response) => console.log(response))
+//   .catch((error) => console.error(error));
+
+//Snack 6 Bonus
+
+//Crea una variabile booleana (areThereAvailableBooks) per verificare se c’è almeno un libro disponibile.
+
+const areThereAvailableBooks = books.some((p) => p.available);
+
+console.log(areThereAvailableBooks);
+
+//Crea un array (booksByPrice) con gli elementi di books ordinati in base al prezzo (crescente).
+
+const booksByPrice = books
+  .map((book) => book)
+  .sort((a, b) => {
+    const priceA = parseInt(a.price);
+    const priceB = parseInt(b.price);
+
+    return priceA - priceB;
   });
 
-  return Promise.all(promises);
-}
+console.log(booksByPrice);
 
-getBooks()
-  .then((response) => console.log(response))
-  .catch((error) => console.error(error));
+console.log(books);
+
+//Ordina l’array booksByPricein base alla disponibilità (prima quelli disponibili), senza creare un nuovo array.
+booksByPrice.sort((a, b) => {
+  return b.available - a.available;
+});
